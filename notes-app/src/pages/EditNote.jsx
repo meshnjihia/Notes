@@ -76,14 +76,14 @@ const EditNote = ({ noteData, setNoteData }) => {
       >
         <input
           type="text"
-          className="w-full py-2 px-4 bg-transparent rounded text-sm text-clr-white placeholder:text-clr-white outline-none"
+          className="w-full py-2 px-4 bg-transparent rounded text-sm text-clr-white placeholder:text-clr-white outline-none border border-clr-dark"
           autoFocus
           placeholder="Edit title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className="w-full py-2 px-4 bg-transparent rounded text-sm text-clr-white placeholder:text-clr-white outline-none"
+          className="w-full py-2 px-4 bg-transparent rounded text-xs text-clr-white placeholder:text-clr-white outline-none border border-clr-dark "
           name=""
           id=""
           rows="28"
