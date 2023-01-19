@@ -11,7 +11,7 @@ function App() {
     localStorage.setItem('notes', JSON.stringify(noteData))
   },[noteData])
   return (
-    <main className="overflow-y-scroll relative mt-16 py-8 px-6 w-96 h-[48rem] bg-clr-black scrollbar-hide">
+    <main className="overflow-y-scroll relative mt-16 py-8 px-6 w-96 h-[48rem] bg-clr-black scrollbar-hide max-w-sm">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home noteData={noteData} />} />
