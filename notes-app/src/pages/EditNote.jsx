@@ -1,50 +1,47 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+
 import { useState } from 'react'
 import useCreateDate from '../hooks/useCreateDate'
-
-
-
+import Dialog from '../hooks/Dialog'
 
 const EditNote = ({ noteData, setNoteData }) => {
   const { id } = useParams()
   const note = noteData.find((item) => item.id === id)
 
-  // console.log(note)
   const [title, setTitle] = useState(note.title)
   const [details, setDetails] = useState(note.details)
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const toggleDialog = () => {
+    setIsDialogOpen(!isDialogOpen)
+  }
+
   const date = useCreateDate()
 
-  // console.log(id)
   const navigate = useNavigate()
+
   const handleSave = (e) => {
     e.preventDefault()
     if (title && details) {
       const newNote = { ...note, title, details, date }
-      // console.log(note);
+
       const newNotes = noteData.map((item) => {
         if (item.id === id) {
           item = newNote
         }
         return item
       })
-      // setNoteData(prevNotes => [note, ...prevNotes])
-      // setNoteData(prevNotes => [newNotes, ...prevNotes])
       setNoteData(newNotes)
     }
-    // redirect to home page
     navigate('/')
   }
-  
   const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this?')) {
-      const newNotes = noteData.filter(item => item.id !== id)
-      setNoteData(newNotes)
-      navigate('/')
-    }
-    
+    const newNotes = noteData.filter((item) => item.id !== id)
+            setNoteData(newNotes)
+            navigate('/')
+            toggleDialog()
+          
   }
 
   return (
@@ -62,12 +59,14 @@ const EditNote = ({ noteData, setNoteData }) => {
         >
           Save
         </button>
-        <button
-          onClick={handleDelete}
-          className="transition-all duration-300 ease-in bg-clr-danger text-clr-white text-lg py-2.5 px-4 rounded-xl shadow-md shadow-black/40"
-        >
-          <RiDeleteBin6Line />
-        </button>
+        <Dialog
+          onClick={toggleDialog}        
+          
+          isOpen={isDialogOpen}
+          message="Are you sure?"
+          onConfirm={handleDelete}
+          onCancel={toggleDialog}
+        />
       </header>
       <form
         action=""
@@ -92,8 +91,10 @@ const EditNote = ({ noteData, setNoteData }) => {
           onChange={(e) => setDetails(e.target.value)}
         ></textarea>
       </form>
+      <div>
+        
+      </div>
     </section>
   )
 }
-
 export default EditNote
