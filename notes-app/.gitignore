@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 editNtote.jsx
+dummy
 
 # Editor directories and files
 .vscode/*
