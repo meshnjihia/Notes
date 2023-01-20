@@ -32,9 +32,9 @@ const Home = ({ noteData }) => {
       </div>
 
       {/* notes__header  */}
-      <header className="flex items-center justify-center pt-0  pb-6 bg-clr-black z-10 w-full">
+      <header className="flex items-center justify-center pt-0  pb-6 bg-clr-black z-10 w-full max-w-[18rem]">
         {!searchBox && (
-          <h2 className="font-dmsans font-medium whitespace-nowrap border border-transparent hover:border-clr-dark py-2 rounded-xl px-1 text-lg hover:bg-clr-dark mx-6">
+          <h2 className="font-dmsans font-medium whitespace-nowrap border border-transparent hover:border-clr-dark py-2 rounded-xl px-1 text-lg hover:bg-clr-dark mx-6 max-w-[10rem]">
             <Link to="/">MyNotes</Link>
           </h2>
         )}
@@ -43,7 +43,7 @@ const Home = ({ noteData }) => {
             type="text"
             autoFocus
             placeholder="Search"
-            className="text-clr-white bg-transparent  mx-6  border border-clr-dark outline-none rounded-xl text-lg p-2 text-center"
+            className="text-clr-white bg-transparent  mx-6  border border-clr-dark outline-none rounded-xl text-lg px-2 py-1.5 text-center max-w-[10rem]"
             value={text}
             onChange={(e) => {
               setText(e.target.value)
